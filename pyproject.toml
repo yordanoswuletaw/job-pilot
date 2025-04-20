@@ -1,0 +1,29 @@
+[tool.poetry]
+name = ""  
+version = "0.1.0"
+description = ""
+authors = ["Yordanos Wuletaw <yordanoswuletaw@gmail.com>"]
+package-mode = false
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+structlog = ">=25.2.0,<26.0.0"
+pydantic = ">=2.10.6,<3.0.0"
+pandas = ">=2.2.3,<3.0.0"
+llama-index = "^0.12.31"
+llama-parse = "^0.6.12"
+torch = "2.2.2"
+llama-index-embeddings-huggingface = "^0.5.3"
+llama-index-utils-workflow = "^0.3.1"
+llama-index-readers-whisper = "^0.1.0"
+dotenv = "^0.9.9"
+numpy = "<2.0"
+llama-index-llms-together = "^0.3.1"
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
