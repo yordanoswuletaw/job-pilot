@@ -20,6 +20,8 @@ llama-index-readers-whisper = "^0.1.0"
 dotenv = "^0.9.9"
 numpy = "<2.0"
 llama-index-llms-together = "^0.3.1"
+gradio = "^5.25.2"
+assemblyai = "^0.38.0"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.29.5"
