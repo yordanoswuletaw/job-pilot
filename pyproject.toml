@@ -22,6 +22,11 @@ numpy = "<2.0"
 llama-index-llms-together = "^0.3.1"
 gradio = "^5.25.2"
 assemblyai = "^0.38.0"
+langchain-together = "^0.3.0"
+pypdf2 = "^3.0.1"
+python-dotenv = "^1.1.0"
+faiss-cpu = "1.10.0"
+browser-use = "0.1.41"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.29.5"
