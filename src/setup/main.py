@@ -1,9 +1,13 @@
 from langchain_together import ChatTogether
-from reader import ResumeReader
+from parser import ResumeParser
 import os
 from dotenv import load_dotenv
+from utils.logger import get_logger
 
 load_dotenv()
+
+logger = get_logger(__name__)
+
 prompt = """
 **Task**:  
 You are an expert resume parser. Convert the following raw resume text into a structured JSON format. Extract and categorize all key details accurately, even if the resume format is unconventional.
@@ -82,18 +86,21 @@ model = ChatTogether(
     model="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
 )
 
+def setup():
+  """Setup Employment Profile."""
+  # Get the absolute path to the project root
+  project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+  test_file = os.path.join(project_root, 'data', 'fake_resume.pdf')
+  
+  parser = ResumeParser()
+  try:
+      resume_data = parser.read_resume_data(test_file)
+      parsed_resume_json = model.invoke(prompt.format(resume_raw_text=resume_data))
+      print(parsed_resume_json)
+  except FileNotFoundError as e:
+      logger.error(f"Please make sure there is a PDF or Image file at: {test_file}")
+
 if __name__ == '__main__':
-    # Get the absolute path to the project root
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-    test_file = os.path.join(project_root, 'data', 'fake_resume.pdf')
-    
     print('started...')
-    reader = ResumeReader()
-    try:
-        resume_data = reader.read_resume_data(test_file)
-        res = model.invoke(prompt.format(resume_raw_text=resume_data))
-        print(res)
-    except FileNotFoundError as e:
-        print(f"Error: {e}")
-        print(f"Please make sure there is a PDF file at: {test_file}")
+    setup()
     print('ended...')

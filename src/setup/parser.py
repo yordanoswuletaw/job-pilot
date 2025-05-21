@@ -5,7 +5,7 @@ from pdf2image import convert_from_path
 from pypdf import PdfReader
 import pytesseract
 
-class ResumeReader:
+class ResumeParser:
     """
     A class to read and process resume files from specified directories.
     """
